@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
+title: 风间
+subtitle: 子标题
+description: 描述
 keywords:
-author: John Doe
-language: en
-timezone:
+author: 风间
+language: zh-CN
+timezone: ASIA SHAGNHAI
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
