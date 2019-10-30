@@ -1,3 +1,8 @@
+
+tags:  
+    - sku
+    - spu
+---
 >业务场景
 * 用户：这个iphone11和华为mate30哪个好啊？
 gi
