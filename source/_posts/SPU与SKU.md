@@ -29,7 +29,7 @@
     、款式、套餐也无关。
     
 * 维基百科：
-    (business) Stock Keeping Unit. A unique value that represents a distinct salable item (product or service) and all of its attributes.
+    SKU：(business) Stock Keeping Unit. A unique value that represents a distinct salable item (product or service) and all of its attributes.
 
 
 > SPU、SKU有什么作用
