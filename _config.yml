@@ -5,17 +5,17 @@
 # Site
 title: 风间
 subtitle: 一生有你
-description: 描述
-keywords:
+description: 自信 自强 自由
+keywords: java 小程序 电商
 author: 风间
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://onelamp.cn
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing index.html from permalinks
@@ -84,7 +84,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: obsidian
+theme: theme-ad
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
