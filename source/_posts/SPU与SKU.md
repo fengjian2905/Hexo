@@ -1,3 +1,4 @@
+title: SPU&SKU
 tags:  
     - sku
     - spu
