@@ -6,12 +6,12 @@
   <meta name="author" content="风间" />
   
   
-  <title>标签: 分页 | 风间</title>
+  <title>ajax跨域 | 风间</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="技术, 程序" />
+    <meta name="keywords" content="javascript,ajax,跨域," />
   
 
   
@@ -42,7 +42,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2019-04-22",
     passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "风间",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -160,19 +160,104 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">标签: 分页</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-11-11
+    </span>
+    
+      <span>
+        | <a href="/categories/javascript/"><i class="fa fa-bookmark"></i>javascript</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    ajax跨域
+  </h1>
   
+  <article class="passage-article">
+    <h4 id="什么是ajax跨域问题"><a href="#什么是ajax跨域问题" class="headerlink" title="什么是ajax跨域问题"></a>什么是ajax跨域问题</h4><p>它是由浏览器的同源策略造成的，是浏览器对javascript施加的安全限制。<br>同源策略：是指协议，域名，端口都要相同，其中有一个不同都会产生跨域。<br>前台调用后台服务接口时，前后台不在一个域（协议、域名、端口）就会产生跨域问题。</p>
+<h4 id="判断一个url是否跨域"><a href="#判断一个url是否跨域" class="headerlink" title="判断一个url是否跨域"></a>判断一个url是否跨域</h4><table>
+<thead>
+<tr>
+<th>当前url</th>
+<th align="center">被请求url</th>
+<th align="right">是否跨越</th>
+<th align="right">原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>http://www.test.com/</code></td>
+<td align="center"><code>http://www.test.com/index.html</code></td>
+<td align="right">否</td>
+<td align="right">同源（协议、域名、端口号相同）</td>
+</tr>
+<tr>
+<td><code>http://www.test.com/</code></td>
+<td align="center"><code>https://www.test.com/index.html</code></td>
+<td align="right">跨域</td>
+<td align="right">协议不同</td>
+</tr>
+<tr>
+<td><code>http://www.test.com/</code></td>
+<td align="center"><code>http://www.baidu.com</code>/</td>
+<td align="right">跨域</td>
+<td align="right">主域名不同</td>
+</tr>
+<tr>
+<td><code>http://www.test.com/</code></td>
+<td align="center"><code>http://blog.test.com</code>/</td>
+<td align="right">跨域</td>
+<td align="right">子域名不同</td>
+</tr>
+<tr>
+<td><code>http://www.test.com:8080/</code></td>
+<td align="center"><code>http://www.test.com:7001</code>/</td>
+<td align="right">跨越</td>
+<td align="right">端口号不同</td>
+</tr>
+</tbody></table>
+<h4 id="编写测试代码"><a href="#编写测试代码" class="headerlink" title="编写测试代码"></a>编写测试代码</h4><p>1.新建项目ajaxclient、ajaxserver<br><img src="/ajax%E8%B7%A8%E5%9F%9F/p1.png" alt="项目"><br>2.ajaxserver编写api</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是ajax跨域问题"><span class="toc-text">什么是ajax跨域问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#判断一个url是否跨域"><span class="toc-text">判断一个url是否跨域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写测试代码"><span class="toc-text">编写测试代码</span></a></li></ol>
+  </div>
+</aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/ajax/"><i class="fa fa-tags"></i>ajax</a>
+     
+      <a href="/tags/%E8%B7%A8%E5%9F%9F/"><i class="fa fa-tags"></i>跨域</a>
     
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-11-07</time>
-      <a target="_self" href="/%E5%88%86%E9%A1%B5%E8%A1%8C%E4%B8%BA%E6%8A%BD%E8%B1%A1.html">分页行为抽象</a>
     </div>
   
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -280,19 +365,19 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/canvas.html" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/SPU%E4%B8%8ESKU.html" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
