@@ -182,7 +182,7 @@
   </h1>
   
   <article class="passage-article">
-    <h4 id="什么是ajax跨域问题"><a href="#什么是ajax跨域问题" class="headerlink" title="什么是ajax跨域问题"></a>什么是ajax跨域问题</h4><p>它是由浏览器的同源策略造成的，是浏览器对javascript施加的安全限制。<br>同源策略：是指协议，域名，端口都要相同，其中有一个不同都会产生跨域。<br>前台调用后台服务接口时，前后台不在一个域（协议、域名、端口）就会产生跨域问题。</p>
+    <h4 id="什么是ajax跨域问题"><a href="#什么是ajax跨域问题" class="headerlink" title="什么是ajax跨域问题"></a>什么是ajax跨域问题</h4><p>前台调用后台服务接口时，前后台不在一个域（协议、域名、端口）就会产生跨域问题。</p>
 <h4 id="判断一个url是否跨域"><a href="#判断一个url是否跨域" class="headerlink" title="判断一个url是否跨域"></a>判断一个url是否跨域</h4><table>
 <thead>
 <tr>
@@ -223,7 +223,75 @@
 <td align="right">端口号不同</td>
 </tr>
 </tbody></table>
-<h4 id="编写测试代码"><a href="#编写测试代码" class="headerlink" title="编写测试代码"></a>编写测试代码</h4><p>1.新建项目ajaxclient、ajaxserver<br><img src="/ajax%E8%B7%A8%E5%9F%9F/p1.png" alt="项目"><br>2.ajaxserver编写api</p>
+<h4 id="编写测试代码"><a href="#编写测试代码" class="headerlink" title="编写测试代码"></a>编写测试代码</h4><ol>
+<li><p>新建项目ajaxclient、ajaxserver<br> <img src="/ajax%E8%B7%A8%E5%9F%9F/p1.png" alt="项目"></p>
+</li>
+<li><p>ajaxserver编写api</p>
+<ol>
+<li><p>Controller</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/test&quot;)</span><br><span class="line">public class TestController &#123;</span><br><span class="line">    @GetMapping(&quot;get1&quot;)</span><br><span class="line">    public RequestBean get1()&#123;</span><br><span class="line">        System.out.println(&quot;TestController.get1&quot;);</span><br><span class="line">        return new RequestBean(&quot;get1 ok&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Bean</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class RequestBean &#123;</span><br><span class="line">    private String data;</span><br><span class="line">    public RequestBean(String data) &#123;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getData() &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setData(String data) &#123;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>ajaxclient前台代码</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://code.jquery.com/jquery-3.4.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;a href=&quot;#&quot; onclick=&quot;get1()&quot;&gt;发送get1请求&lt;/a&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        function get1() &#123;</span><br><span class="line"></span><br><span class="line">            $.getJSON(&quot;http://localhost:8080/test/get1&quot;).then(</span><br><span class="line">                function (result) &#123;</span><br><span class="line">                    console.log(result);</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：8080端口已经被ajaxserver占用，这里要更改ajaxclient端口号</p>
+</blockquote>
+<h4 id="测试结果：跨域问题产生"><a href="#测试结果：跨域问题产生" class="headerlink" title="测试结果：跨域问题产生"></a>测试结果：跨域问题产生</h4><ol>
+<li>服务端返回200<br><img src="/ajax%E8%B7%A8%E5%9F%9F/p2.png" alt="服务端返回"></li>
+<li>浏览器控制台报错<br><img src="/ajax%E8%B7%A8%E5%9F%9F/p3.png" alt="浏览器报错"></li>
+</ol>
+<blockquote>
+<p>引入前台Jasmine测试框架（<a href="https://jasmine.github.io/）" target="_blank" rel="noopener">https://jasmine.github.io/）</a></p>
+</blockquote>
+<h4 id="为什么会发生ajax跨域（三个条件同时满足）"><a href="#为什么会发生ajax跨域（三个条件同时满足）" class="headerlink" title="为什么会发生ajax跨域（三个条件同时满足）"></a>为什么会发生ajax跨域（三个条件同时满足）</h4><ol>
+<li><p>浏览器限制</p>
+<ul>
+<li>浏览器出于安全考虑，发现请求跨域，会做一些校验，校验不通过就会报错</li>
+<li>测试请求，后台正常接收请求，也已经正常处理，只是浏览器报错</li>
+</ul>
+</li>
+<li><p>跨域</p>
+<ul>
+<li>调用方和被调用方不处在同一个域（协议、域名、端口号有一个不同就是不同域）</li>
+</ul>
+</li>
+<li><p>XHR (XmlHttpRequest)请求</p>
+<ul>
+<li>发送的请求类型是XHR</li>
+</ul>
+</li>
+</ol>
+<h4 id="解决跨域问题思路"><a href="#解决跨域问题思路" class="headerlink" title="解决跨域问题思路"></a>解决跨域问题思路</h4><p><img src="/ajax%E8%B7%A8%E5%9F%9F/p4.png" alt="解决思路"><br>针对发生跨域问题产生的原因来解决（上文所述三个条件）</p>
+<ul>
+<li><p>针对浏览器限制：添加参数，让浏览器不限制，不做校验</p>
+<ul>
+<li>意义不大，浏览器是客户端的，每个人都要改动</li>
+</ul>
+</li>
+<li><p>针对请求XHR请求：发送的请求类型只要不是XHR就不会有跨域问题，<br>使用jsonp请求</p>
+</li>
+<li><p><strong>针对跨域</strong>(重点)：基于jsonp有很多弊端，无法满足现在的开发要求，jsonp使用的越来越少</p>
+<ul>
+<li><p>方式一 ：<br>  （支持跨域）被调用方修改代码支持跨域，基于http协议关于跨域方面的要求做的修改，<br>  a域名访问b域名，b域名返回信息告诉浏览器自己支持跨域</p>
+</li>
+<li><p>方式二：<br>  （隐藏跨域）被调用方不是本地、本公司，无法进行代码修改，从而实现方式一的目的，就要调用方修改代码，通过一个代理，<br>  从浏览器发出去的都是a域名请求，在代理里面把请求转换为b域名</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="浏览器禁止检查"><a href="#浏览器禁止检查" class="headerlink" title="浏览器禁止检查"></a>浏览器禁止检查</h4><p>命令行参数启动浏览器，禁止浏览器进行安全校验</p>
+<h4 id="JSONP如何解决跨域"><a href="#JSONP如何解决跨域" class="headerlink" title="JSONP如何解决跨域"></a>JSONP如何解决跨域</h4><ol>
+<li>JSONP是什么？</li>
+<li>使用JSONP,服务器后台要改动吗？</li>
+</ol>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -232,7 +300,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是ajax跨域问题"><span class="toc-text">什么是ajax跨域问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#判断一个url是否跨域"><span class="toc-text">判断一个url是否跨域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写测试代码"><span class="toc-text">编写测试代码</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是ajax跨域问题"><span class="toc-text">什么是ajax跨域问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#判断一个url是否跨域"><span class="toc-text">判断一个url是否跨域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写测试代码"><span class="toc-text">编写测试代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试结果：跨域问题产生"><span class="toc-text">测试结果：跨域问题产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么会发生ajax跨域（三个条件同时满足）"><span class="toc-text">为什么会发生ajax跨域（三个条件同时满足）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决跨域问题思路"><span class="toc-text">解决跨域问题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浏览器禁止检查"><span class="toc-text">浏览器禁止检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSONP如何解决跨域"><span class="toc-text">JSONP如何解决跨域</span></a></li></ol>
   </div>
 </aside>
   
